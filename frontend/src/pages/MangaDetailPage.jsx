@@ -154,6 +154,12 @@ const MangaDetailPage = () => {
                         <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white mb-4 uppercase italic leading-none">
                             {manga.title}
                         </h1>
+
+                        {manga.description && (
+                            <p className="text-text-muted text-sm font-medium mb-6 line-clamp-3 hover:line-clamp-none transition-all cursor-default max-w-2xl bg-white/5 p-4 rounded-2xl border border-white/5">
+                                {manga.description}
+                            </p>
+                        )}
                         <div className="flex items-center gap-6">
                             <div>
                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60 block mb-1">Author / Producer</label>

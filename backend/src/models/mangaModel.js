@@ -11,7 +11,8 @@ const mangaSchema = new mongoose.Schema({
   readingPlatform: { type: String },
   releaseYear: { type: Number },
   posterUrl: { type: String },
-  isFavourite: { type: Boolean, default: false }
+  isFavourite: { type: Boolean, default: false },
+  description: { type: String }
 }, { timestamps: true });
 
 const Manga = mongoose.model('Manga', mangaSchema);
