@@ -192,7 +192,7 @@ const EditPage = () => {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Current Status *</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Read Status *</label>
                         <select
                             required
                             name="readStatus"

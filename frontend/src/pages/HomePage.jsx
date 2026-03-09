@@ -66,7 +66,7 @@ const HomePage = () => {
         if (activeTab === 'favorites') {
             result = result.filter(manga => manga.isFavourite);
         } else if (activeTab === 'recommended') {
-            result = result.filter(manga => manga.isRecommended);
+            result = result.filter(manga => manga.isRecommended || manga.rating >= 8);
         } else if (activeTab !== 'all') {
             result = result.filter(manga => manga.readStatus === activeTab);
         }
@@ -178,7 +178,7 @@ const HomePage = () => {
                         className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'recommended' ? 'bg-yellow-500 text-background shadow-lg' : 'bg-surface-light/50 text-text-muted hover:text-white'}`}
                     >
                         <Trophy className="w-3.5 h-3.5 fill-current" />
-                        Top Rated
+                        Top Picks
                     </button>
 
                     <div className="hidden md:block flex-grow"></div>
