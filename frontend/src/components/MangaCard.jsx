@@ -59,7 +59,7 @@ const MangaCard = ({ manga, onToggleFavorite }) => {
                 )}
 
                 {/* Status Badge */}
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 z-20">
                     <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${getStatusColor(manga.readStatus)}`}>
                         {manga.readStatus}
                     </span>
@@ -67,15 +67,16 @@ const MangaCard = ({ manga, onToggleFavorite }) => {
 
                 {/* Favorite Toggle */}
                 <button
+                    type="button"
                     onClick={toggleFavourite}
-                    className={`absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 ${isFav ? 'bg-primary text-background shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-background/40 text-white/60 hover:text-white border border-white/10'}`}
+                    className={`absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 z-20 ${isFav ? 'bg-primary text-background shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-background/40 text-white/60 hover:text-white border border-white/10'}`}
                 >
                     <Heart className={`w-4 h-4 ${isFav ? 'fill-current' : ''}`} />
                 </button>
 
                 {/* Gradient Overlay for Title */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                
+
                 {/* Content Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 pt-10">
                     <h3 className="text-lg font-bold text-white line-clamp-1 group-hover:text-primary transition-colors duration-300">
