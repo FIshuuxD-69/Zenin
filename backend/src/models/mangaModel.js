@@ -12,6 +12,8 @@ const mangaSchema = new mongoose.Schema({
   releaseYear: { type: Number },
   posterUrl: { type: String },
   isFavourite: { type: Boolean, default: false },
+  mangaStatus: { type: String, enum: ['Ongoing', 'Completed', 'Cancelled'], default: 'Ongoing' },
+  isRecommended: { type: Boolean, default: false },
   description: { type: String }
 }, { timestamps: true });
 

@@ -66,7 +66,7 @@ const HomePage = () => {
         if (activeTab === 'favorites') {
             result = result.filter(manga => manga.isFavourite);
         } else if (activeTab === 'recommended') {
-            result = result.filter(manga => manga.rating >= 8);
+            result = result.filter(manga => manga.isRecommended);
         } else if (activeTab !== 'all') {
             result = result.filter(manga => manga.readStatus === activeTab);
         }
@@ -154,8 +154,8 @@ const HomePage = () => {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 border ${activeTab === tab.id
-                                ? 'bg-primary text-background border-primary shadow-[0_0_20px_rgba(245,158,11,0.3)] scale-105'
-                                : 'bg-surface-light/40 text-text-muted border-white/5 hover:bg-surface-light hover:text-white hover:border-white/10'
+                            ? 'bg-primary text-background border-primary shadow-[0_0_20px_rgba(245,158,11,0.3)] scale-105'
+                            : 'bg-surface-light/40 text-text-muted border-white/5 hover:bg-surface-light hover:text-white hover:border-white/10'
                             }`}
                     >
                         {tab.label}

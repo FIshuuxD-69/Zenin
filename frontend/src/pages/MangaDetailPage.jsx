@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
     ArrowLeft, Trash2, Edit, Star, BookOpen,
-    Calendar, Layers, MonitorPlay, CheckCircle2, Bookmark, Heart
+    Calendar, Layers, MonitorPlay, CheckCircle2, Bookmark, Heart, ThumbsUp
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../lib/axios';
@@ -94,21 +94,29 @@ const MangaDetailPage = () => {
                                 </div>
                             )}
 
-                            {/* Status Overlay */}
-                            <div className="absolute top-6 left-6 z-20">
+                            <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
                                 <div className="px-4 py-2 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center gap-2">
                                     <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.6)]"></div>
                                     <span className="text-[10px] font-black text-white uppercase tracking-widest">{manga.readStatus}</span>
                                 </div>
+                                <div className="px-4 py-2 bg-blue-500/60 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center gap-2 w-fit">
+                                    <div className={`w-1.5 h-1.5 rounded-full ${manga.mangaStatus === 'Ongoing' ? 'bg-green-500' : manga.mangaStatus === 'Completed' ? 'bg-blue-500' : 'bg-red-500'}`}></div>
+                                    <span className="text-[10px] font-black text-white uppercase tracking-widest">{manga.mangaStatus}</span>
+                                </div>
                             </div>
 
-                            {manga.isFavourite && (
-                                <div className="absolute top-6 right-6 z-20">
+                            <div className="absolute top-6 right-6 z-20 flex flex-col gap-2 items-end">
+                                {manga.isFavourite && (
                                     <div className="p-2.5 bg-red-500 backdrop-blur-xl rounded-2xl shadow-xl">
                                         <Heart className="w-4 h-4 text-white fill-current" />
                                     </div>
-                                </div>
-                            )}
+                                )}
+                                {manga.isRecommended && (
+                                    <div className="p-2.5 bg-blue-500 backdrop-blur-xl rounded-2xl shadow-xl">
+                                        <ThumbsUp className="w-4 h-4 text-white fill-current" />
+                                    </div>
+                                )}
+                            </div>
 
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
                         </div>

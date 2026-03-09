@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, BookOpen, User, Heart } from 'lucide-react';
+import { Star, BookOpen, User, Heart, ThumbsUp } from 'lucide-react';
 import { getRatingColor } from '../lib/utils';
 import { axiosInstance } from '../lib/axios';
 import toast from 'react-hot-toast';
@@ -58,21 +58,31 @@ const MangaCard = ({ manga, onToggleFavorite }) => {
                     </div>
                 )}
 
-                {/* Status Badge */}
-                <div className="absolute top-4 left-4 z-20">
+                {/* Status Badges */}
+                <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
                     <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${getStatusColor(manga.readStatus)}`}>
                         {manga.readStatus}
                     </span>
+                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${manga.mangaStatus === 'Ongoing' ? 'bg-green-500' : manga.mangaStatus === 'Completed' ? 'bg-blue-500' : 'bg-red-500'} text-white`}>
+                        {manga.mangaStatus}
+                    </span>
                 </div>
 
-                {/* Favorite Toggle */}
-                <button
-                    type="button"
-                    onClick={toggleFavourite}
-                    className={`absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 z-20 ${isFav ? 'bg-primary text-background shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-background/40 text-white/60 hover:text-white border border-white/10'}`}
-                >
-                    <Heart className={`w-4 h-4 ${isFav ? 'fill-current' : ''}`} />
-                </button>
+                {/* Action Badges */}
+                <div className="absolute top-4 right-4 z-20 flex flex-col gap-2 items-end">
+                    <button
+                        type="button"
+                        onClick={toggleFavourite}
+                        className={`p-2.5 rounded-full backdrop-blur-md transition-all duration-300 ${isFav ? 'bg-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.4)]' : 'bg-background/40 text-white/60 hover:text-white border border-white/10'}`}
+                    >
+                        <Heart className={`w-4 h-4 ${isFav ? 'fill-current' : ''}`} />
+                    </button>
+                    {manga.isRecommended && (
+                        <div className="p-2.5 rounded-full bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)] backdrop-blur-md">
+                            <ThumbsUp className="w-4 h-4 fill-current" />
+                        </div>
+                    )}
+                </div>
 
                 {/* Gradient Overlay for Title */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>

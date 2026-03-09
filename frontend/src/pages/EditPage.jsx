@@ -22,7 +22,9 @@ const EditPage = () => {
         releaseYear: new Date().getFullYear(),
         posterUrl: '',
         isFavourite: false,
-        description: ''
+        isRecommended: false,
+        description: '',
+        mangaStatus: 'Ongoing'
     });
 
     useEffect(() => {
@@ -46,7 +48,9 @@ const EditPage = () => {
                     releaseYear: manga.releaseYear || new Date().getFullYear(),
                     posterUrl: manga.posterUrl || '',
                     isFavourite: manga.isFavourite || false,
-                    description: manga.description || ''
+                    isRecommended: manga.isRecommended || false,
+                    description: manga.description || '',
+                    mangaStatus: manga.mangaStatus || 'Ongoing'
                 });
             } catch (error) {
                 console.error('Failed to fetch manga for editing:', error);
@@ -205,6 +209,21 @@ const EditPage = () => {
                     </div>
 
                     <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Manga Status *</label>
+                        <select
+                            required
+                            name="mangaStatus"
+                            value={formData.mangaStatus}
+                            onChange={handleChange}
+                            className="w-full bg-surface-light/30 border border-white/5 rounded-2xl px-5 py-4 focus:outline-none focus:border-primary/50 focus:bg-surface-light/50 transition-all text-sm font-bold appearance-none cursor-pointer"
+                        >
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div className="space-y-2">
                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary ml-1">Rating (1-10)</label>
                         <input
                             type="number"
@@ -263,7 +282,7 @@ const EditPage = () => {
                         ></textarea>
                     </div>
 
-                    <div className="md:col-span-2 pt-4">
+                    <div className="md:col-span-2 pt-4 flex flex-wrap gap-8">
                         <label className="flex items-center gap-4 cursor-pointer group w-fit">
                             <div className="relative">
                                 <input
@@ -279,6 +298,23 @@ const EditPage = () => {
                                 </div>
                             </div>
                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white group-hover:text-primary transition-colors">Mark as Primary Collection</span>
+                        </label>
+
+                        <label className="flex items-center gap-4 cursor-pointer group w-fit">
+                            <div className="relative">
+                                <input
+                                    type="checkbox"
+                                    name="isRecommended"
+                                    checked={formData.isRecommended}
+                                    onChange={handleChange}
+                                    className="peer sr-only"
+                                />
+                                <div className="w-6 h-6 border-2 border-white/20 rounded-lg group-hover:border-blue-500 transition-all peer-checked:bg-blue-500 peer-checked:border-blue-500"></div>
+                                <div className="absolute inset-0 flex items-center justify-center text-background opacity-0 peer-checked:opacity-100 transition-opacity">
+                                    <svg className="w-4 h-4 fill-current font-bold" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" /></svg>
+                                </div>
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white group-hover:text-blue-500 transition-colors">Recommend Manga</span>
                         </label>
                     </div>
                 </div>
