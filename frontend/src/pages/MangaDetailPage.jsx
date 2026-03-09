@@ -156,7 +156,7 @@ const MangaDetailPage = () => {
                         </h1>
 
                         {manga.description && (
-                            <p className="text-text-muted text-sm font-medium mb-6 line-clamp-3 hover:line-clamp-none transition-all cursor-default max-w-2xl bg-white/5 p-4 rounded-2xl border border-white/5">
+                            <p className="text-text-muted text-sm font-medium mb-6 line-clamp-3 hover:line-clamp-none transition-all cursor-default max-w-2xl bg-white/5 p-4 rounded-2xl border border-white/5 whitespace-pre-wrap break-words">
                                 {manga.description}
                             </p>
                         )}
